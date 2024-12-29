@@ -6,23 +6,23 @@
 #include <MFRC522DriverPinSimple.h>
 #include <MFRC522Debug.h>
 
-// Define pins
-#define RST_PIN 21   // Reset pin for the MFRC522 reader
-#define SS_PIN 5     // Slave Select (SS) pin for the reader
+// define pins
+#define RST_PIN 21   
+#define SS_PIN 5     
 
-// Wi-Fi credentials
-const char* ssid = "jafri";
-const char* password = "12150329";
+// wifi credentials
+const char* ssid = "";
+const char* password = "";
 
-// Web App URL for Google Sheets
-String googleScriptURL = "https://script.google.com/macros/s/AKfycbyqnb0a0MXbcIEz2ZAPbTmZDvnQgq-cqa4tPMFQtLNFpRsDJsDSTzZASBul0Fm76sVA/exec";
+// web app URL
+String googleScriptURL = "";
 
-// Create MFRC522 instance
+//  MFRC522 instance
 MFRC522DriverPinSimple ss_pin(SS_PIN);   
 MFRC522DriverSPI mfrc522_driver(ss_pin);
 MFRC522 mfrc522(mfrc522_driver);
 
-// Mode: "register" or "attendance"
+// mode: "register" or "attendance"
 String mode = "attendance";
 
 void setup() {
