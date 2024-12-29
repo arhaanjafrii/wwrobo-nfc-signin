@@ -1,5 +1,5 @@
 function doGet(e) {
-  const ss = SpreadsheetApp.openById("1StFnvcY1iEZSvK03KPp1Dgg6-fc0g1l-4m3B1Sexdks"); // Replace with your actual Google Sheets ID
+  const ss = SpreadsheetApp.openById("1StFnvcY1iEZSvK03KPp1Dgg6-fc0g1l-4m3B1Sexdks");
   const userDataSheet = ss.getSheetByName("User_Data");
   const attendanceSheet = ss.getSheetByName("Attendance");
 
@@ -16,7 +16,7 @@ function doGet(e) {
       return ContentService.createTextOutput("Name is required for registration.");
     }
 
-    // Check if UID already exists in User_Data
+    // check if data already exists in User_Data
     const userData = userDataSheet.getDataRange().getValues();
     const existingUser = userData.find(row => row[0] === uid);
 
@@ -24,7 +24,7 @@ function doGet(e) {
       return ContentService.createTextOutput("UID already registered.");
     }
 
-    // Add UID and name to User_Data
+    // add card UID and name to User_Data
     userDataSheet.appendRow([uid, name]);
     return ContentService.createTextOutput("User registered successfully.");
   } else if (mode === "attendance") {
@@ -39,7 +39,7 @@ function doGet(e) {
     const timestamp = new Date();
     const status = determineStatus(uid, attendanceSheet);
 
-    // Log attendance
+    // attendance
     attendanceSheet.appendRow([timestamp, uid, name, status]);
     return ContentService.createTextOutput(`Attendance logged for ${name} as ${status}.`);
   }
@@ -47,7 +47,7 @@ function doGet(e) {
   return ContentService.createTextOutput("Invalid mode.");
 }
 
-// Helper function to determine if user is signing in or out
+// determine if user is signing in or out
 function determineStatus(uid, attendanceSheet) {
   const attendanceData = attendanceSheet.getDataRange().getValues();
   const userLogs = attendanceData.filter(row => row[1] === uid);
